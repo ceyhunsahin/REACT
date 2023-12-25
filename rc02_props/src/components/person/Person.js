@@ -1,14 +1,17 @@
-//import img from '../img_aile.jpg';
+import './style.css';
 
 const Person = (props) => {
-    console.log(props.tel);
+    console.log(props.img);
     return (
-        <div>
-            <div>
-                 <img src = {props.img} alt = "resim"/>
+        <div className="card">
+            <div className="card-img">
+                 <img src = {props.img} alt = "resim" style ={{"width": "300px", "height": "200px"}}/>
             </div>
-            <p>{props.tel}</p>
-            <p> {props.name + '.'+ props.surname+'@clarusway.com'}</p>
+            <div>
+             
+                <p> {props.tel ? props.tel : "tel yok"}</p>
+                <p> {`${props.name }.${ props?.surname  ?? "belirtilmemis"}@clarusway.com`}</p>
+            </div>
         </div>
     )
 }

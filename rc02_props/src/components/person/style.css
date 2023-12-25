@@ -1,0 +1,19 @@
+.card {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: center;
+    align-items: center;
+
+    border: 1px;
+    border-style: double;
+    width: 650px;
+
+
+}
+
+.card-img {
+    width: 400px;
+      
+      
+}
