@@ -2,7 +2,9 @@
 //import styled from "styled-components";
 /* import { TwicImg } from '@twicpics/components/react';
 import '@twicpics/components/style.css' */
-import './Msg.css'
+import './Msg.css';
+
+import winter from "../img/winter1.jpg";
 
 const msgStyle = {
     fontFamily:'Tahoma',
@@ -25,6 +27,7 @@ const Message  = ({name}) => {
                     src="https://cdn.pixabay.com/photo/2023/12/08/09/13/vine-8437282_1280.jpg"
                     alt="Avocado"
                 />
+                <img src={winter} alt="" className='msg-img'/>
                 <p>ceyhun</p>
                 
                 {/* <Title>My name is {name}</Title> */}
