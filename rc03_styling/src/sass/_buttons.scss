@@ -1,0 +1,33 @@
+@import "./variables";
+
+.card {
+
+&-{
+
+    &small{
+
+        background-color:$green;
+        padding: 2px;
+    }
+
+    &large{
+        background-color:$kirmizi;
+        padding: 2px;
+        margin-left: 10px;
+
+    }
+}
+}
+button {
+    margin: 5px;
+    padding: 0.5rem 1rem;
+    color: azure;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    border: 1px solid $kirmizi;
+    background-color: transparent;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    cursor: pointer;
+}

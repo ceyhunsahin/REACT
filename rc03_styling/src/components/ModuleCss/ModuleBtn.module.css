@@ -1,0 +1,39 @@
+.main {
+    text-align: center !important;
+}
+
+.birinci {
+    margin: 5px;
+    padding: 0.5rem 1rem;
+    color: cyan;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    background-color: transparent;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    cursor: pointer;
+    width: 7rem;
+}
+
+.birinci:hover {
+    background-color: #004084;
+}
+
+.ikinci {
+    margin: 5px;
+    padding: 0.5rem 1rem;
+    color: #0069d9;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    background-color: transparent;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    cursor: pointer;
+    width: 7rem;
+}
+
+.ikinci:hover {
+    background-color: #5a625a;
+}
