@@ -1,6 +1,10 @@
 import React from 'react'
 import "./Card.scss"
 
+const shoot=() => {
+  console.log("shoot")
+}
+
 const Card = ({veri}) => {
     
   return (
@@ -14,7 +18,7 @@ const Card = ({veri}) => {
                 <img src={img} alt={name} />
                 <p>{comment}</p>
                 <p>{email}</p>
-                <button className='card-small'> small</button>
+                <button className='card-small' onClick = {shoot}> small</button>
                 <button className='card-large'> LARGE</button>
             
             </div>
