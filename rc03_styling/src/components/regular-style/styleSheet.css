@@ -1,0 +1,21 @@
+.logo {
+    margin : "5px";
+    width: 30%;
+    height: 40%;
+}
+
+.header {
+    color: purple;
+}
+
+.once  {
+    color: salmon;
+    background-color: black;
+
+}
+
+.sonra {
+    color: seagreen;
+    background-color: yellowgreen;
+    font-size: 24px;
+}
