@@ -1,4 +1,4 @@
-import StyledComponents from './components/styledComponents/StyledComponents';
+/* import StyledComponents from './components/styledComponents/StyledComponents'; */
 import './App.css';
 import Button from './components/materialui/MaterialUI';
 import Typography from './components/materialui/Typography';
