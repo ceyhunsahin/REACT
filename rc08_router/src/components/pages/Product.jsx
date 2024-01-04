@@ -21,7 +21,7 @@ function Product() {
         
             <div className={styles.products}>
             {products.map((each) => (
-                <Link to ={`details`} key = {each.id} className={styles.product}>
+                <Link to ={`details/${each.id}`} key = {each.id} className={styles.product}>
                     <h6>{each.category}</h6>
                     <img className={styles.image}src={each.image} alt={each.title} />
                     <p>{each.title}</p>
