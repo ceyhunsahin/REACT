@@ -4,7 +4,9 @@ import { getContacts, createContact } from "../contacts";
 
 import { useEffect } from "react";
 export async function loader({ request }) {
+    console.log("request",request)
     const url = new URL(request.url);
+    console.log("url",url)
     const q = url.searchParams.get("q");
     const contacts = await getContacts(q);
     return { contacts,q };
