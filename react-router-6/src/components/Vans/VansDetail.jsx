@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
-import {useParams} from "react-router-dom"
+import {useParams, useNavigate} from "react-router-dom"
+import BackArrow from './BackArrow';
 
 
 export default function VansDetail() {
@@ -17,9 +18,16 @@ export default function VansDetail() {
 
     console.log("product", product)
 
+    const navigate = useNavigate()
+
+    const handleClick = () => {
+        navigate(-1)
+    }
+
 
     return (
         <div>
+        <BackArrow onClick = {handleClick}/>
         {idOfProduct ?
         (<div>
             <h1>{product.title}</h1>

@@ -4,7 +4,7 @@ import "./Navbar.css"
 import { Link } from "react-router-dom";
 import bgImg from '../assets/home-hero.png'
 
-function NavbarFunc() {
+function Header() {
   return (
     <div className="navbar-nav">
       <div className="navbar-left">
@@ -42,4 +42,4 @@ function NavbarFunc() {
   );
 }
 
-export default NavbarFunc;
+export default Header;
