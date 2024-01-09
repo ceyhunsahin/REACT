@@ -1,13 +1,19 @@
 
 
 import "./Navbar.css"
-import { Link } from "react-router-dom";
+import { NavLink  } from "react-router-dom";
 import bgImg from '../assets/home-hero.png'
+import { useLocation } from'react-router-dom';
 
 function Header() {
+
+  const homeIsActive = useLocation().pathname === '/';
+  console.log(homeIsActive)
+
+
   return (
     <div className="navbar-nav">
-      <div className="navbar-left">
+      <div >
       
     
           <img
@@ -16,22 +22,22 @@ function Header() {
               height="40"
               alt=""
             />
-           <Link className='navbar-link'  to="/" >
+           <NavLink className={ homeIsActive ? "navbar-link" : "navbar-linknotactive" } to="/" >
             <strong>
                  #VANLIFE
             </strong>
 
-            </Link>
+            </NavLink >
             
       </div>
 
       <div className='navbar-right'>
  
-                  <Link  className='navbar-link' to="/host">Host  </Link>
+                  <NavLink className={({isActive})=> isActive ? 'navbar-link' : "navbar-linknotactive" }  to="/host">Host  </NavLink >
 
-                  <Link className='navbar-link' to="/about"> About  </Link>
+                  <NavLink className={({isActive})=> isActive ? 'navbar-link' : "navbar-linknotactive" }  to="/about"> About  </NavLink >
 
-                  <Link className='navbar-link' to="/Vans"> Vans  </Link>
+                  <NavLink className={({isActive})=> isActive ? 'navbar-link' : "navbar-linknotactive" }  to="/Vans"> Vans  </NavLink >
       </div>
                 
              

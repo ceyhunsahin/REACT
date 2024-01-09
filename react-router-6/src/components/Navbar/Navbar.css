@@ -20,6 +20,21 @@
 }
 .navbar-link {
     text-decoration: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    margin : -20px 15px;
+    color: rgb(53, 16, 239);
+    text-transform:uppercase;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: rgb(243, 219, 237);
+
+
+}
+
+.navbar-linknotactive {
+    text-decoration: none;
     margin : -20px 15px;
 
 

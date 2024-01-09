@@ -1,10 +1,9 @@
 import React from 'react'
 
-
-export default function Dashboard() {
+export default function Pricing() {
     return (
         <div>
-            Welcome Dashboard !
+            
         </div>
     )
 }

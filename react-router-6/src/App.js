@@ -8,6 +8,12 @@ import Layout from './components/Navbar/Layout';
 import Dashboard from './components/Host/Dashboard';
 import Income from './components/Host/Income';
 import Reviews from './components/Host/Reviews';
+import HostLayout from './components/Host/HostLayout';
+import HostVansDetails from './components/Host/HostVansDetails';
+import Hostvans from './components/Host/Hostvans';
+import Details from './components/Host/HostVanDetails/details';
+import Pricing from './components/Host/HostVanDetails/pricing';
+import Photos from './components/Host/HostVanDetails/photos';
 
 
 function App() {
@@ -17,15 +23,30 @@ function App() {
 
       <Routes>
 
-          <Route element={<Layout />} >
+          <Route path='/' element={<Layout />} >
 
-            <Route path='/' element={<Home />} />
-            <Route path='/vans' element={<Vans />} />
-            <Route path='/about' element={<About />} />
-            <Route path='/vans/details/:id' element={<VansDetail />} />
-            <Route path='/host' element={<Dashboard />} >
-              <Route path='/host/income' element={<Income />} />
-              <Route path='/host/reviews' element={<Reviews />} />
+            <Route index element={<Home />} />
+            <Route path='vans' element={<Vans />} />
+            <Route path='about' element={<About />} />
+            <Route path='vans/details/:id' element={<VansDetail />} />
+
+{/*         <Route path='vans' >
+              <Route index element={<Vans />} />
+              <Route path='details/:id' element={<VansDetail />} />
+            </Route> */}
+
+            <Route path='host' element={<HostLayout />} >
+              <Route index element={<Dashboard />} />
+              <Route path="income" element={<Income />} />
+              <Route path="vans"  element={<Hostvans />} />
+
+              <Route path='vans/:VanDetailId' element={<HostVansDetails />} >
+                <Route index element={<Details />} />
+                <Route path="pricing" element={<Pricing />} />
+                <Route path="photos"  element={<Photos />} />
+                
+              </Route>
+              <Route path='reviews' element={<Reviews />} />
             </Route>
           </Route>
         

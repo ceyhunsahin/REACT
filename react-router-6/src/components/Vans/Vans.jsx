@@ -13,7 +13,7 @@ export default function Vans() {
           .then(data => setProducts(data))
     
         }, [])
-        console.log("products1", products)
+       
         
         
     
@@ -25,7 +25,7 @@ export default function Vans() {
                         <h6>{each.category}</h6>
                         <img className={styles.image}src={each.image} alt={each.title} />
                         <p>{each.title}</p>
-                        <button type='submit' name = "Detail"> Detail </button>
+                       
                     </Link>
                     ))}
                 </div>
