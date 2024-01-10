@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {useParams, useNavigate} from "react-router-dom"
+import {useParams, useNavigate, useLocation, Link} from "react-router-dom"
 import BackArrow from './BackArrow';
 
 
@@ -8,6 +8,8 @@ export default function VansDetail() {
     console.log(idOfProduct)
 
     const [product, setProduct] = useState([])
+    const location = useLocation();
+    console.log("location", location)
 
     useEffect(() => {
         fetch(`https://fakestoreapi.com/products/${idOfProduct.id}`)
@@ -27,7 +29,14 @@ export default function VansDetail() {
 
     return (
         <div>
-        <BackArrow onClick = {handleClick}/>
+        <BackArrow onClick = {handleClick}/> 
+        <Link 
+            //to="../.."
+            to = {`../..${location.state.search}`}
+            relative='path'
+            state = {{ search : `{}` }}
+            >Back to All Vans
+            </Link>
         {idOfProduct ?
         (<div>
             <h1>{product.title}</h1>
