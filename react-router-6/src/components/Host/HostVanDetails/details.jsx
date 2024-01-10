@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 
-import {useParams} from "react-router-dom";
+import {useOutletContext} from "react-router-dom";
 import styles from "../Host.module.css"
 
 
@@ -10,8 +10,8 @@ import styles from "../Host.module.css"
 
 export default function Details() {
 
-    const params = useParams();
-    const [vans, setVans] = useState([]);
+    //const params = useParams();
+/*     const [vans, setVans] = useState([]);
 
     useEffect(() => {
         fetch(`https://fakestoreapi.com/products/${params.VanDetailId}`)
@@ -20,7 +20,11 @@ export default function Details() {
 
     }, [params.VanDetailId])
 
-    console.log("vans", vans.title)
+    console.log("vans", vans.title) */
+
+    const {vans} = useOutletContext();
+    console.log(vans)
+
 
 
 
@@ -28,11 +32,11 @@ export default function Details() {
     return (
         <div>
 
-                <div key={vans.id} className  = {styles.detailDesign}>
+                <section key={vans.id} className  = {styles.detailDesign}>
                     <p><span style = {{fontWeight : 'Bold',fontSize: '16px' }}>Title : </span>  {vans.title}</p>
                     <p><span style = {{fontWeight : 'Bold',fontSize: '16px' }}>Category : </span> {vans.category}</p>
                     <p><span style = {{fontWeight : 'Bold',fontSize: '16px' }}>Description : </span> {vans.description}</p>
-                </div>
+                </section>
 
    
         </div>

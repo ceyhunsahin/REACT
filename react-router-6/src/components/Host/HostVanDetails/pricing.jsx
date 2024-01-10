@@ -1,9 +1,13 @@
 import React from 'react'
+import { useOutletContext } from 'react-router-dom';
+
 
 export default function Pricing() {
+    const {vans} = useOutletContext();
     return (
-        <div>
+        <section>
+        <h3>{vans.price}$</h3>
             
-        </div>
+        </section>
     )
 }

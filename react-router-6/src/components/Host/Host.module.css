@@ -109,3 +109,18 @@
     flex-wrap: wrap;
 
 }
+
+.bigImage {
+    width: 20%;
+    height: 20%;
+    cursor: zoom-in;
+
+  }
+  
+  .bigImage:hover {
+    transform: scale(3.5);
+  }
+
+.imageDetail {
+    margin-left : 25rem;
+}

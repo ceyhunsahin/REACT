@@ -44,7 +44,7 @@ export default function HostVansDetails() {
             <div>
 
             </div>
-            <Outlet />
+            <Outlet context = {{ vans }}/>
         </div>
     )
 }
