@@ -5,7 +5,7 @@ import BackArrow from './BackArrow';
 
 export default function VansDetail() {
     const idOfProduct = useParams();
-    console.log(idOfProduct)
+    console.log("idOfProduct", idOfProduct)
 
     const [product, setProduct] = useState([])
     const location = useLocation();
@@ -26,16 +26,20 @@ export default function VansDetail() {
         navigate(-1)
     }
 
+    const search = location.state?.search || ""
+    const title = location.state?.title || "all"
+
 
     return (
         <div>
         <BackArrow onClick = {handleClick}/> 
         <Link 
             //to="../.."
-            to = {`../..${location.state.search}`}
+            //to = {`../..${location.state.search}`} // more consistent 
+            //but if location.state.search is nul, it will be messy
+            to = {`../..${search}`}
             relative='path'
-            state = {{ search : `{}` }}
-            >Back to All Vans
+            >Back to {title}
             </Link>
         {idOfProduct ?
         (<div>
