@@ -2,20 +2,32 @@
 import React, {useState, useEffect} from 'react'
 import {useParams, Outlet, Link, NavLink} from "react-router-dom";
 import styles from  "./Host.module.css"
+import {getHostData} from "../api";
 export default function HostVansDetails() {
     const params = useParams();
     console.log(params)
 
     const [vans, setVans] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        fetch(`https://fakestoreapi.com/products/${params.VanDetailId}`)
-     .then(res => res.json())
-     .then(data => setVans(data))
+        const fetchHostData = async () => {
+            setLoading(true);
+            const data = await getHostData(params.VanDetailId);
+            setTimeout(() => {
+                setVans(data);
+                setLoading(false);
+            }, 1000);
+        }
+        fetchHostData()
 
     }, [params.VanDetailId])
 
     const { id, ...rest }  = vans
+
+    if (loading) {
+        return <h1>Loading...</h1>
+    }
 
 
 

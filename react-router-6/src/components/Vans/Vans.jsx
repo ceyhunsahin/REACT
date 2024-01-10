@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import {Link, useSearchParams} from "react-router-dom";
+import {getData} from "../api";
 
 export default function Vans() {
 
@@ -17,14 +18,33 @@ export default function Vans() {
         console.log("typeFilter",typeFilter);
     
         const [products, setProducts] = useState([])
+        const [loading, setLoading] = useState(false);
+        const [error, setError] = useState("");
     
      
         useEffect(() => {
-           fetch('https://fakestoreapi.com/products')
-          .then(res => res.json())
-          .then(data => setProducts(data))
-    
-        }, [])
+            
+            async function fetchData() {
+               
+                setLoading(true);
+
+                try {
+
+                const data = await getData();
+                
+                setProducts(data)
+                
+                     }
+                        catch (error) {
+                            setError(error.message);
+                        }
+                        
+                        
+                setLoading(false);
+            
+        }
+        fetchData();
+    }, [])
 
 
 
@@ -70,6 +90,14 @@ export default function Vans() {
             )
             
 
+        }
+
+        if (loading) {
+            return <h1>Loading...</h1>
+        }
+
+        if (error) {
+            return <h1>{error}</h1>
         }
         
     
