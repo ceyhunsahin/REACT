@@ -6,13 +6,15 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import {Link, useSearchParams} from "react-router-dom";
+
 export default function Vans() {
 
         const [searchParams, setSearchParams] = useSearchParams();
         
-        const typeFilter = searchParams.toString();
+        /* const typeFilter = searchParams.toString(); */
+       const typeFilter = searchParams.get('search')
 
-        console.log("typeFilter",typeFilter.split('=')[1]);
+        console.log("typeFilter",typeFilter);
     
         const [products, setProducts] = useState([])
     
@@ -27,12 +29,44 @@ export default function Vans() {
 
 
         const filteredProducts = products.filter(product => 
-            (product.category.toLowerCase().includes(typeFilter && typeFilter.split('=')[1].toLowerCase())) || 
-            (product.title.toLowerCase().includes(typeFilter && typeFilter.split('=')[1].toLowerCase() )))
+            (product.category.toLowerCase().includes(typeFilter && typeFilter.toLowerCase())) || 
+            (product.title.toLowerCase().includes(typeFilter && typeFilter.toLowerCase() )))
 
-        console.log(" filteredProducts", filteredProducts)
+        for (const [key, value] of Object.entries(filteredProducts)) {
+            console.log(value.title);
+        }
 
-        
+        function genNewSearchParamString(key, value) {
+            /* const newSearchParams = new URLSearchParams(window.location.search);
+            newSearchParams.set(key, value);
+            return newSearchParams.toString(); */
+            console.log("searchParams", searchParams);
+            const newSearchParams = new URLSearchParams(searchParams);
+            console.log("newSearchParams", newSearchParams);
+            if (value === null) {
+                newSearchParams.delete(key);
+            } else {
+            newSearchParams.set(key, value);
+            }
+            return `?${newSearchParams.toString()}`;
+
+
+
+        }
+
+        const handleFilterChange = (key, value) => {
+            setSearchParams(prevParams => {
+                console.log("prevParams", prevParams);
+                if (value === null) {
+                    prevParams.delete(key);
+                } else {
+                    prevParams.set(key, value);
+                }
+
+                }
+            )
+
+        }
         
     
         return (
@@ -51,12 +85,33 @@ export default function Vans() {
                             </Col>
 
                             </Row>
+                            <Row>
+                                <Col sm="auto">
+                                    <Link to = {genNewSearchParamString("search","clothing")}>Clothing</Link>
+                                    
+                                </Col>
+                                <Col sm="auto">
+                                    <Link to = "?search=electronics">Electronics</Link>
+                                </Col>
+                                <Col sm="auto">
+                                    <Link to = "?search=jewelery">Jewelery</Link>
+                                </Col>
+                                <Col sm="auto">
+                                    <Link to = ".">Clear Filter</Link>
+                                </Col>
+                            </Row>
                         </Form>
+
+                        <Button variant="primary" onClick = {() => setSearchParams({"search" : "clothing"})}>Clothing</Button>{' '}
+                        <Button variant="warning" onClick = {() => handleFilterChange("search" , "electronics")}>Electronics</Button>{' '}
+                        <Button variant="info" onClick = {() => setSearchParams({"search" : "jewelery"})}>Jewelery</Button>{' '}
                     </div>
+                    
                     <div className={styles.products}>
+                    
                     {typeFilter ? 
                         filteredProducts.map((each) => (
-                        <Link to ={`details/${each.id}`} key = {each.id} className={styles.product}>
+                        <Link to ={`details/${each.id}`} state = {{ search:typeFilter }} key = {each.id} className={styles.product}>
                             <h6>{each.category}</h6>
                             <img className={styles.image}src={each.image} alt={each.title} />
                             <p>{each.title}</p>
@@ -65,7 +120,7 @@ export default function Vans() {
                         ))
                         :
                         products.map((each) => (
-                        <Link to ={`details/${each.id}`} key = {each.id} className={styles.product}>
+                        <Link to ={`details/${each.id}`}  key = {each.id} className={styles.product}>
                             <h6>{each.category}</h6>
                             <img className={styles.image}src={each.image} alt={each.title} />
                             <p>{each.title}</p>
