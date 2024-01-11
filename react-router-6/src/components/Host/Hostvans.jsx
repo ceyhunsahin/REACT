@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import styles from "./Host.module.css";
 import { Link, useLoaderData } from "react-router-dom";
 import { getData } from "../api";
+import AuthRequired from "../AuthRequired";
 
 
-export function loader() {
+export async function loader() {
+  await AuthRequired()
   return getData();
 }
 

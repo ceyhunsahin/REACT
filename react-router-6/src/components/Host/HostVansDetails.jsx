@@ -3,10 +3,12 @@ import React, {useState, useEffect} from 'react'
 import {useParams, Outlet, Link, NavLink, useLoaderData} from "react-router-dom";
 import styles from  "./Host.module.css"
 import {getHostData} from "../api";
+import AuthRequired from "../AuthRequired";
 
-export function loader({params}) {
-    console.log("params", params)
-  return getHostData(params.VanDetailId);
+
+export async function loader({params}) {
+    await AuthRequired()
+    return getHostData(params.VanDetailId);
 }
 export default function HostVansDetails() {
     const params = useParams();
