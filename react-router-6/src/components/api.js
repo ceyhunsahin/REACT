@@ -1,13 +1,15 @@
 /* eslint-disable no-throw-literal */
 
 
+
+
 export async function getData() {
     const res  = await fetch('https://fakestoreapi.com/products')
     if (!res.ok) {
         throw {
-            message : "Something went wrong",
+            message : "something went wrong",
             status : res.status,
-            statusText : res.statusText
+            statusText : "Bad Request"
         }
 
     }

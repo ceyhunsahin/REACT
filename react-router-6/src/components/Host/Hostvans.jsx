@@ -26,7 +26,7 @@ function Hostvans() {
   return (
     <div style={{ margin: "10px" }}>
       <h2>Your Listed Vans </h2>
-      <div className>
+      <div >
         {vans.map((each) => (
           <Link to={`${each.id}`} key={each.id} className={styles.miniCard}>
             <img className={styles.image} src={each.image} alt={each.title} />
