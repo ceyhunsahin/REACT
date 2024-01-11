@@ -19,6 +19,7 @@ import Pricing from './components/Host/HostVanDetails/pricing';
 import Photos from './components/Host/HostVanDetails/photos';
 import NotFound from './components/NotFound';
 import Error from './components/Vans/errorVans';
+import Signin from './components/Signin/Signin';
 
 
 const router = createBrowserRouter(createRoutesFromElements(
@@ -30,7 +31,7 @@ const router = createBrowserRouter(createRoutesFromElements(
           loader = {vansLoader} />
     <Route path='about' element={<About />} />
     <Route path='vans/details/:id' element={<VansDetail />} />
-
+    <Route path='signin' element={<Signin />} />
 
 
     <Route path='host' element={<HostLayout />} >
