@@ -1,13 +1,23 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Host.module.css";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { getData } from "../api";
 
-function Hostvans() {
-  const [vans, setVans] = useState([]);
+
+export function loader() {
+  return getData();
+}
+
+
+export default function Hostvans() {
+  /* const [vans, setVans] = useState([]); */
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
+  const vans = useLoaderData()
+
+  
+
+/*   useEffect(() => {
     const fetchdata = async () => {
       setLoading(true);
       const data = await getData();
@@ -17,7 +27,7 @@ function Hostvans() {
       }, 1000);
     };
     fetchdata();
-  }, []);
+  }, []); */
 
   if (loading) {
     return <h1>Loading...</h1>;
@@ -41,4 +51,4 @@ function Hostvans() {
   );
 }
 
-export default Hostvans;
+

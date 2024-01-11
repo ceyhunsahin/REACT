@@ -1,16 +1,21 @@
 
 import React, {useState, useEffect} from 'react'
-import {useParams, Outlet, Link, NavLink} from "react-router-dom";
+import {useParams, Outlet, Link, NavLink, useLoaderData} from "react-router-dom";
 import styles from  "./Host.module.css"
 import {getHostData} from "../api";
+
+export function loader({params}) {
+    console.log("params", params)
+  return getHostData(params.VanDetailId);
+}
 export default function HostVansDetails() {
     const params = useParams();
     console.log(params)
 
-    const [vans, setVans] = useState([]);
+    /* const [vans, setVans] = useState([]); */
     const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
+    /* useEffect(() => {
         const fetchHostData = async () => {
             setLoading(true);
             const data = await getHostData(params.VanDetailId);
@@ -21,9 +26,11 @@ export default function HostVansDetails() {
         }
         fetchHostData()
 
-    }, [params.VanDetailId])
+    }, [params.VanDetailId]) */
 
-    const { id, ...rest }  = vans
+    const vans = useLoaderData();
+
+   /*  const { id, ...rest }  = vans */
 
     if (loading) {
         return <h1>Loading...</h1>
