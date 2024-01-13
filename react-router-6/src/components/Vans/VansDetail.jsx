@@ -47,8 +47,8 @@ export default function VansDetail() {
       </Link>
       {idOfProduct ? (
         <div>
-          <h1>{product.title}</h1>
-          <img src={product.image} alt={product.title} />
+          <h1>{product.name}</h1>
+          <img src={product.imageUrl} alt={product.title} />
           <p>{product.description}</p>
         </div>
       ) : (

@@ -4,8 +4,8 @@ import bgImg from "../assets/home-hero.png";
 import { useLocation } from "react-router-dom";
 
 function Header() {
-  const loccation = useLocation();
-  console.log("location", loccation);
+  const location = useLocation();
+  console.log("location", location);
 
   const homeIsActive = useLocation().pathname === "/";
 

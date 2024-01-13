@@ -3,22 +3,48 @@
 
 
 
-export async function getData() {
-    const res  = await fetch('https://fakestoreapi.com/products')
+export async function getData(id) {
+    const url = id ? `/api/vans/${id}` : "/api/vans"
+    const res = await fetch(url)
     if (!res.ok) {
         throw {
-            message : "something went wrong",
+            message: "Failed to fetch vans",
+            statusText: res.statusText,
+            status: res.status
+        }
+    }
+    const data = await res.json()
+    return data.vans
+}
+
+
+export async function getHostData(id) {
+    const url = id ? `/api/host/vans/${id}` : "/api/host/vans"
+    const res = await fetch(url)
+    if (!res.ok) {
+        throw {
+            message: "Failed to fetch vans",
+            statusText: res.statusText,
+            status: res.status
+        }
+    }
+    const data = await res.json()
+    return data.vans
+}
+
+// Bunu bizim apimiz kabul etmedigi
+export async function loginUser(creds) {
+    const res = await fetch('https://fakestoreapi.com/users/login', 
+    { method: 'POST', body: JSON.stringify(creds), headers: {'Content-Type': 'application/json'}}
+    )
+    const data = await res.json()
+
+    if (!res.ok) {
+        throw {
+            message : data.message,
             status : res.status,
             statusText : "Bad Request"
         }
-
     }
-    const data = await res.json()
-    return data
-}
 
-export async function getHostData(param) {
-    const res  = await fetch(`https://fakestoreapi.com/products/${param}`)
-    const data = await res.json()
-    return data
 }

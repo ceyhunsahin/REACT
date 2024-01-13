@@ -37,16 +37,43 @@ export default function Vans() {
     fetchData();
   }, []); */
 
-  const products = useLoaderData();
+  const vans = useLoaderData();
 
-  console.log('data2', products)
+  console.log(vans)
+  
 
-  /* const typeFilter = searchParams.toString(); */
-  const typeFilter = searchParams.get("search");
-
+  const typeFilter = searchParams.get("search")
   console.log("typeFilter", typeFilter);
 
-  const filteredProducts = products.filter(
+  const displayedVans = typeFilter
+        ? vans.filter(van => van.type === typeFilter)
+        : vans
+
+
+  const vanElements = displayedVans.map(van => (
+          <div key={van.id} className={styles.products}>
+              <Link
+                  to={`${van.id}`}
+                  state={{
+                      search: `?${searchParams.toString()}`,
+                      type: typeFilter
+                  }}
+              >
+                  <img alt={van.name} src={van.imageUrl} />
+                  <div className="van-info">
+                      <h3>{van.name}</h3>
+                      <p>${van.price}<span>/day</span></p>
+                  </div>
+                  <i className={`van-type ${van.type} selected`}>{van.type}</i>
+              </Link>
+          </div>
+      ))
+
+  /* const typeFilter = searchParams.toString(); */
+
+  
+
+/*   const filteredProducts = products.filter(
     (product) =>
       product.category
         .toLowerCase()
@@ -54,11 +81,11 @@ export default function Vans() {
       product.title
         .toLowerCase()
         .includes(typeFilter && typeFilter.toLowerCase())
-  );
+  ); */
 
-  for (const [key, value] of Object.entries(filteredProducts)) {
+/*   for (const [key, value] of Object.entries(filteredProducts)) {
     console.log(value.title);
-  }
+  } */
 
   function genNewSearchParamString(key, value) {
     /* const newSearchParams = new URLSearchParams(window.location.search);
@@ -113,15 +140,15 @@ export default function Vans() {
           </Row>
           <Row>
             <Col sm="auto">
-              <Link to={genNewSearchParamString("search", "clothing")}>
-                Clothing
+              <Link to={genNewSearchParamString("search", "simple")}>
+                Simple
               </Link>
             </Col>
             <Col sm="auto">
-              <Link to="?search=electronics">Electronics</Link>
+              <Link to="?search=rugged">Rugged</Link>
             </Col>
             <Col sm="auto">
-              <Link to="?search=jewelery">Jewelery</Link>
+              <Link to="?search=luxury">Luxury</Link>
             </Col>
             <Col sm="auto">
               <Link to=".">Clear Filter</Link>
@@ -130,61 +157,46 @@ export default function Vans() {
         </Form>
         <Button
           variant="primary"
-          onClick={() => setSearchParams({ search: "clothing" })}
+          onClick={() => setSearchParams({ search: "simple" })}
         >
-          Clothing
+          Simple
         </Button>{" "}
         <Button
           variant="warning"
-          onClick={() => handleFilterChange("search", "electronics")}
+          onClick={() => handleFilterChange("search", "rugged")}
         >
-          Electronics
+          Rugged
         </Button>{" "}
         <Button
           variant="info"
-          onClick={() => setSearchParams({ search: "jewelery" })}
+          onClick={() => setSearchParams({ search: "luxury" })}
         >
-          Jewelery
+          Luxury
         </Button>{" "}
       </div>
 
       <div className={styles.products}>
-        {typeFilter
-          ? filteredProducts.map((each) => (
+        {typeFilter ?? vans.map((each) => (
               <Link
-                to={`details/${each.id}`}
-                state={{
-                  search: `?${searchParams.toString()}`,
-                  title: typeFilter,
-                }}
+                to={`${each.id}`}
                 key={each.id}
                 className={styles.product}
               >
-                <h6>{each.category}</h6>
+                <h6>{each.type}</h6>
                 <img
                   className={styles.image}
-                  src={each.image}
-                  alt={each.title}
+                  src={each.imageUrl}
+                  alt={each.name}
                 />
-                <p>{each.title}</p>
-              </Link>
-            ))
-          : products.map((each) => (
-              <Link
-                to={`details/${each.id}`}
-                key={each.id}
-                className={styles.product}
-              >
-                <h6>{each.category}</h6>
-                <img
-                  className={styles.image}
-                  src={each.image}
-                  alt={each.title}
-                />
-                <p>{each.title}</p>
+                <p>{each.price}$</p>
               </Link>
             ))}
       </div>
+      <div className={styles.products}>
+      {typeFilter &&
+                vanElements}
+            </div>
+
     </div>
   );
 }

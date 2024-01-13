@@ -1,6 +1,6 @@
 import React from 'react'
-import {Outlet, redirect} from "react-router-dom"
-export default async function AuthRequired() {
+import {Outlet, redirect,Navigate} from "react-router-dom"
+export default async function AuthRequired(param=false) {
 /**
 |--------------------------------------------------
 | Fake Auth
@@ -9,12 +9,13 @@ export default async function AuthRequired() {
 |--------------------------------------------------
 */
     //! Conditionally send to the login page.   
-    const isLoggedIn = false;
+    const isLoggedIn = localStorage.getItem("loggedin");
+    console.log("isLoggedIn 1", isLoggedIn);
     if (!isLoggedIn) {
-        /* return <Redirect to="/signin" /> */
-        throw redirect("/signin")
+        console.log("isLoggedIn 2 ", isLoggedIn);
+        throw redirect("/signin?message=You must be logged in to access this page"); 
     } else {
-        return <Outlet />
+        return null
     }
 
 

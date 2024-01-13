@@ -13,7 +13,7 @@ export async function loader() {
 
 export default function Hostvans() {
   /* const [vans, setVans] = useState([]); */
-  const [loading, setLoading] = useState(false);
+  /* const [loading, setLoading] = useState(false); */
 
   const vans = useLoaderData()
 
@@ -31,9 +31,9 @@ export default function Hostvans() {
     fetchdata();
   }, []); */
 
-  if (loading) {
+/*   if (loading) {
     return <h1>Loading...</h1>;
-  }
+  } */
 
   return (
     <div style={{ margin: "10px" }}>

@@ -19,7 +19,7 @@ import Pricing from './components/Host/HostVanDetails/pricing';
 import Photos from './components/Host/HostVanDetails/photos';
 import NotFound from './components/NotFound';
 import Error from './components/Vans/errorVans';
-import Signin from './components/Signin/Signin';
+import Signin, {loader as loginLoader, action as loginAction} from './components/Signin/Signin';
 import AuthRequired from './components/AuthRequired';
 
 
@@ -31,11 +31,15 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route path='vans' element={<Vans />} 
           loader = {vansLoader} />
     <Route path='about' element={<About />} />
-    <Route path='vans/details/:id' element={<VansDetail />} 
+    <Route path='vans/:id' element={<VansDetail />} 
     loader = {vansLoaderDetail}
 
     />
-    <Route path='signin' element={<Signin />} />
+    <Route path='signin' 
+      element={<Signin/>}
+      loader = {loginLoader} 
+      action = {loginAction}
+    />
 
 
     <Route path='host' element={<HostLayout />} >
