@@ -41,9 +41,9 @@ export default function Hostvans() {
       <div >
         {vans.map((each) => (
           <Link to={`${each.id}`} key={each.id} className={styles.miniCard}>
-            <img className={styles.image} src={each.image} alt={each.title} />
+            <img className={styles.image} src={each.imageUrl} alt={each.title} />
             <div className={styles.miniCardSecond}>
-              <h3>{each.title}</h3>
+              <h3>{each.type}</h3>
               <p>{each.price}$</p>
             </div>
           </Link>

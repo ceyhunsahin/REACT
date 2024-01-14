@@ -21,6 +21,7 @@ import NotFound from './components/NotFound';
 import Error from './components/Vans/errorVans';
 import Signin, {loader as loginLoader, action as loginAction} from './components/Signin/Signin';
 import AuthRequired from './components/AuthRequired';
+localStorage.removeItem("loggedIn")
 
 
 const router = createBrowserRouter(createRoutesFromElements(
@@ -43,12 +44,9 @@ const router = createBrowserRouter(createRoutesFromElements(
 
 
     <Route path='host' element={<HostLayout />} >
-      <Route 
-      index 
-      element={<Dashboard />} 
-
-        
+      <Route index element={<Dashboard />} 
       />
+
       <Route 
       path="income" 
       element={<Income />} 
@@ -69,7 +67,7 @@ const router = createBrowserRouter(createRoutesFromElements(
           }} 
         />
       <Route 
-      path='vans/:VanDetailId' 
+      path='vans/:id' 
       element={<HostVansDetails />} 
       loader = {loaderHostDetails} 
       >

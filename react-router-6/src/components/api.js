@@ -32,19 +32,21 @@ export async function getHostData(id) {
     return data.vans
 }
 
-// Bunu bizim apimiz kabul etmedigi
+
 export async function loginUser(creds) {
-    const res = await fetch('https://fakestoreapi.com/users/login', 
-    { method: 'POST', body: JSON.stringify(creds), headers: {'Content-Type': 'application/json'}}
+    const res = await fetch("/api/signin",
+        { method: "post", body: JSON.stringify(creds) }
     )
     const data = await res.json()
 
+
     if (!res.ok) {
         throw {
-            message : data.message,
-            status : res.status,
-            statusText : "Bad Request"
+            message: data.message,
+            statusText: res.statusText,
+            status: res.status
         }
     }
 
+    return data
 }

@@ -8,6 +8,9 @@ function Header() {
   console.log("location", location);
 
   const homeIsActive = useLocation().pathname === "/";
+  function fakeLogOut() {
+    localStorage.removeItem("loggedin")
+}
 
   return (
     <div className="navbar-maindesign">

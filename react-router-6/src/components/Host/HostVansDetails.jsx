@@ -7,8 +7,10 @@ import AuthRequired from "../AuthRequired";
 
 
 export async function loader({params}) {
-    await AuthRequired()
-    return getHostData(params.VanDetailId);
+    //await AuthRequired()
+    console.log("params.id", params.id)
+    console.log("getHostData", getHostData(params.id))
+    return getHostData(params.id);
 }
 export default function HostVansDetails() {
     const params = useParams();
@@ -32,6 +34,8 @@ export default function HostVansDetails() {
 
     const vans = useLoaderData();
 
+    console.log("vans", vans)
+
    /*  const { id, ...rest }  = vans */
 
     if (loading) {
@@ -46,7 +50,7 @@ export default function HostVansDetails() {
             <h2>Vans Details</h2>
             <Link to = "/host/vans" > Back to all vans</Link>
             <div className = {styles.miniCard} >
-                <img className = {styles.image2} src={vans.image} alt={vans.title} />
+                <img className = {styles.image2} src={vans.imageUrl} alt={vans.title} />
                             <div className = {styles.miniCardSecond}>
                                 <h3>{vans.title}</h3>
                                 <p>{vans.price}$</p>
