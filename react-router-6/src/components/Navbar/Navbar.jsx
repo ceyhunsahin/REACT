@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 
 function Header() {
   const location = useLocation();
-  console.log("location", location);
+  console.log("hangi location", location);
 
   const homeIsActive = useLocation().pathname === "/";
   function fakeLogOut() {
@@ -54,7 +54,7 @@ function Header() {
           Vans{" "}
         </NavLink>
 
-        <Link to="/signin">
+        <Link to="/login">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="red"
@@ -70,6 +70,7 @@ function Header() {
             />
           </svg>
         </Link>
+        <button onClick={fakeLogOut}>Log Out</button>
       </div>
     </div>
   );
