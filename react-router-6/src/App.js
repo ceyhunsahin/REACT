@@ -4,7 +4,7 @@ import {
   RouterProvider,
   createRoutesFromElements,
   Route,
-  redirect,
+  Link,
 } from "react-router-dom";
 import About from "./components/About/About";
 import Home from "./components/Home/Home";
@@ -32,11 +32,11 @@ import Login, {
 } from "./components/Login/Login";
 import AuthRequired from "./AuthRequired"
 
-localStorage.removeItem("loggedIn");
+//localStorage.removeItem("loggedIn");
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />} errorElement={<Error />}>
+    <Route path="/" element={<Layout />} >
       <Route index  element={<Home />} />
 
       <Route path="about" element={<About />} />
@@ -46,8 +46,10 @@ const router = createBrowserRouter(
         loader={loginLoader}
         action={loginAction}
       />
-      <Route path="vans" element={<Vans />} 
-      loader={vansLoader} />
+      <Route path="vans" 
+            element={<Vans />} 
+            errorElement={<Error />}
+            loader={vansLoader} />
       
       <Route
         path="vans/:id"

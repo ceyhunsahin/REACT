@@ -33,12 +33,16 @@ export async function action({ request }) {
     const formData = await request.formData()
     const email = formData.get("email")
     const password = formData.get("password")
-    const pathname = new URL(request.url).searchParams.get("redirectTo")
-
+    const pathname = new URL(request.url)
+                        .searchParams.get("redirectTo") || "/host"
+    try {
     const data = await loginUser({ email, password })
     localStorage.setItem("loggedin", true)
     console.log("bu data o data", data)
-    return redirect("/host")
+    return redirect(pathname)
+    } catch (error) {
+        return error.message
+    }
     
 }
 
@@ -51,7 +55,7 @@ export default function Login() {
     const navigation = useNavigation()
     console.log("navigation", navigation)
     //const [loginFormData, setLoginFormData] = React.useState({ email: "", password: "" })
-/*     const [status, setStatus] = React.useState("idle")
+/*     const [status, setStatus] = Rea ct.useState("idle")
     const [error, setError] = React.useState(null)
     const message = useLoaderData()
     const navigate = useNavigate() */
