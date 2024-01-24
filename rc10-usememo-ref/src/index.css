@@ -34,13 +34,27 @@ input {
 button {
   padding: 5px;
   margin: 20px;
+  background-color:blueviolet;
+  color: white;
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 .users {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: space-evenly;
+  
+  margin: 2rem auto;
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: space-around;
+  align-items: center;
 }
 
 .useritem {
@@ -50,4 +64,5 @@ button {
 
 #add-button {
   position: absolute;
+  bottom: 10rem;
 }
