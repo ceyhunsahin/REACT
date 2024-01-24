@@ -1,12 +1,14 @@
-import React from 'react'
+import React, {memo} from 'react'
 import '../index.css';
 import UserCard from './UserCard';
 
 
-export default function Users({users}) {
+
+ const Users = memo(({users, addUser}) =>{
+    console.log("user rendered")
     return (
         <div className='users'>
-        <button id = "add-button">Add User</button>
+        <button id = "add-button" onClick = {addUser} >Add User</button>
             
         
                 {users?.map((user) => {
@@ -16,4 +18,7 @@ export default function Users({users}) {
 
         </div>
     )
-}
+})
+
+
+export default Users

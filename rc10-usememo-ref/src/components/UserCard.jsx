@@ -12,7 +12,7 @@ export default function UserCard({user}) {
         }).toDataUriSync();
     
     
-
+        console.log("userCard rendered")
     const userName = user.username
     return (
         <div className='userItem'>
